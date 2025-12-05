@@ -103,7 +103,7 @@ Feel free to open issues, suggest features, or submit pull requests.
 
 
 ## License
-This project is licensed under the MIT License
+This project is licensed under the [MIT License](License)
 
 ## Author
-Anjali SIngh
+[Anjali Singh](https://github.com/Anjali22-07)
