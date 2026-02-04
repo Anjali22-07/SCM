@@ -1,0 +1,17 @@
+/*  ./src/main/resources/static/CSS */
+
+@import "tailwindcss";
+
+
+
+
+
+
+/* @layer base {
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+} */
