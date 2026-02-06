@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base::parent(~{::#content})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
 </head>
 <body>
-    <h1>This is about page</h1>
-    <hr/>
-    <div th:insert="~{base::parent}"></div>
+    <div id="content" >
+        <h1>This is aboutPage</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, accusamus eius explicabo aperiam laboriosam suscipit et eveniet fuga dolor numquam sit. Nam numquam aperiam architecto eaque aspernatur suscipit minima vero.</p>
+      </div>
 </body>
 </html>

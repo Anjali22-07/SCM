@@ -1,5 +1,33 @@
-<div class="parent-fragment" th:fragment="parent">
-    <h1>This is parent fragement</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tempora nobis iusto aliquam. Blanditiis, nesciunt aperiam facilis, ut similique inventore sunt odit, deserunt adipisci vel culpa aut! Pariatur, numquam ipsam?</p>
+<!DOCTYPE html>
+<html 
+class="light"
+lang="en" 
+th:fragment="parent(content)"    
+xmlns:th="http://www.thymeleaf.org">  <!-- we made the complete html a fragment -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" data-th-href="@{'/CSS/output.css'}"/>
+      <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Smart Contact Manager</title>
+</head>
+<body class="dark:bg-gray-900 dark:text-white">
+    <!-- common Header  -->
+     <div th:replace="~{navbar::navbar}"></div>
+    <!-- main Dynamic content -->
+    <div class="p-4 mt-24">
+         <section th:replace="${content}"></section>
+    <h1>This is the Base Layout Fragment</h1>
+    </div>
 
-</div>
+    <!-- Common footer -->
+     <div class="p-4">
+        <h1> welcome to SCM</h1>
+        <p>This is Footer</p>
+     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script th:src="@{'/js/script.js'}"></script>
+</body>
+</html> 
