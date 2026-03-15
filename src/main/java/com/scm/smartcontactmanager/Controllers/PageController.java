@@ -1,9 +1,18 @@
 package com.scm.smartcontactmanager.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.scm.smartcontactmanager.Forms.UserForm;
+
+
+
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 @Controller
@@ -39,8 +48,23 @@ public class PageController {
      }
      
      @GetMapping("/register")
-     public String register() {
+     public String register(Model model) {
+        UserForm userform= new UserForm();
+       
+         model.addAttribute("userForm", userform);
          return new String("register");
+     }
+
+     
+     @RequestMapping(value="/signingUp" , method=RequestMethod.POST)
+     public String processRegistration(@ModelAttribute UserForm userForm){
+       //fetch data from the form
+       System.out.println(userForm);
+       //validate the form 
+       //save to DB
+       //redirect to login page
+
+        return "redirect:/login";
      }
      
 

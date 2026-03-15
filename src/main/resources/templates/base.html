@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html 
-class="light"
+class="dark"
 lang="en" 
 th:fragment="parent(content)"    
 xmlns:th="http://www.thymeleaf.org">  <!-- we made the complete html a fragment -->
@@ -16,7 +16,7 @@ xmlns:th="http://www.thymeleaf.org">  <!-- we made the complete html a fragment 
     <!-- common Header  -->
      <div th:replace="~{navbar::navbar}"></div>
     <!-- main Dynamic content -->
-    <div class="p-4 mt-24">
+    <div class="p-4 ">
          <section th:replace="${content}"></section>
     <h1>This is the Base Layout Fragment</h1>
     </div>
