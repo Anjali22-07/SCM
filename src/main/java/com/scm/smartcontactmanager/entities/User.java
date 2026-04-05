@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor    //since we are using Lombok we can create our getters and setters as well as constructors using annotations
 @NoArgsConstructor
 public class User {
@@ -26,6 +29,7 @@ public class User {
     private String email;
     private String password;
     private String about;
+    @Column(columnDefinition = "TEXT")
     private String profilePic;
     private String phoneNumber;
 

@@ -9,8 +9,8 @@ public interface UserService {
   
      User saveUser(User user);
      Optional<User> findUserById(String Id); 
-     User updateUser(User user);
-     void deleteUser(User user);
+     Optional<User> updateUser(User user);
+     void deleteUser(String Id);
      Boolean isUserExist(String Id);
      Boolean isUserExistByEmail(String email);
      List<User> getAllUsers();

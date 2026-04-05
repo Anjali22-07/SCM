@@ -1,5 +1,6 @@
 package com.scm.smartcontactmanager.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.scm.smartcontactmanager.Forms.UserForm;
-
-
+import com.scm.smartcontactmanager.Services.UserService;
+import com.scm.smartcontactmanager.entities.User;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PageController {
+ 
+     @Autowired
+    private UserService userService;
 
     @RequestMapping("/home")
     public String home(){
@@ -62,6 +66,20 @@ public class PageController {
        System.out.println(userForm);
        //validate the form 
        //save to DB
+
+       //UserForm--> User
+       User user= User.builder().
+       name(userForm.getName())
+       .email(userForm.getEmail())
+       .password(userForm.getPassword())
+       .about(userForm.getAbout())
+       .phoneNumber(userForm.getPhoneNumber())
+       .profilePic("/images/ProfilePcic.jpeg")
+       .build();
+
+        //saving user in db
+         User saveUser=userService.saveUser(user);
+         System.out.println(saveUser);
        //redirect to login page
 
         return "redirect:/login";
