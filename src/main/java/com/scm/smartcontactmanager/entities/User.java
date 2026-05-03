@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -39,7 +41,8 @@ public class User {
      private boolean phoneVerified= false;
 
      //User logging -- SELF, GOOGlE, GITHUB
-
+      @Enumerated(value= EnumType.STRING)    //to save it as a String In DB
+      //SELF , GOOGLE, GIT, FACEBOOK, TWITTER
       private Providers providers= Providers.SELF;
       private String providersUserId;
 

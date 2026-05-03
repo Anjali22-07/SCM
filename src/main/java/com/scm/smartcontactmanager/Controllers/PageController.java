@@ -3,15 +3,17 @@ package com.scm.smartcontactmanager.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.scm.smartcontactmanager.Forms.UserForm;
+import com.scm.smartcontactmanager.Helper.Message;
+import com.scm.smartcontactmanager.Helper.MessageType;
 import com.scm.smartcontactmanager.Services.UserService;
 import com.scm.smartcontactmanager.entities.User;
-
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
@@ -61,28 +63,36 @@ public class PageController {
 
      
      @RequestMapping(value="/signingUp" , method=RequestMethod.POST)
-     public String processRegistration(@ModelAttribute UserForm userForm){
+     public String processRegistration(@Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult, HttpSession session){
        //fetch data from the form
        System.out.println(userForm);
        //validate the form 
+       if(rBindingResult.hasErrors()){
+        return "register";
+       }
        //save to DB
 
        //UserForm--> User
-       User user= User.builder().
-       name(userForm.getName())
-       .email(userForm.getEmail())
-       .password(userForm.getPassword())
-       .about(userForm.getAbout())
-       .phoneNumber(userForm.getPhoneNumber())
-       .profilePic("/images/ProfilePcic.jpeg")
-       .build();
+       User user= new User();
+       user.setName(userForm.getName());
+       user.setEmail(userForm.getEmail());
+       user.setPassword(userForm.getPassword());
+       user.setAbout(userForm.getAbout());
+       user.setPhoneNumber(userForm.getPhoneNumber());
+       user.setProfilePic("/images/ProfilePcic.jpeg");
+
 
         //saving user in db
          User saveUser=userService.saveUser(user);
          System.out.println(saveUser);
        //redirect to login page
 
-        return "redirect:/login";
+       //Displaying message dynamically
+
+       Message message=Message.builder().content("Registerd Successfully").type(MessageType.green).build();
+
+         session.setAttribute("message", message);
+        return "redirect:/register";
      }
      
 
