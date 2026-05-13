@@ -1,7 +1,6 @@
 
-
-    <div
-     
+     <!-- session.message means: Get the attribute named message stored inside the HTTP session. -->
+    <div   
     th:if="${session.message}"  
     th:fragment="messagebox"
     th:object="${session.message}"
