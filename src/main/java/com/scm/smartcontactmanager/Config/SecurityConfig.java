@@ -9,6 +9,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -69,7 +70,20 @@ public class SecurityConfig {
         });
 
 
-        httpSecurity.formLogin(Customizer.withDefaults());
+        httpSecurity.formLogin(FormLogin->{
+                FormLogin.loginPage("/login");
+                FormLogin.loginProcessingUrl("/authenticate");
+                FormLogin.defaultSuccessUrl("/users/dashboard");
+                FormLogin.usernameParameter("email");
+                FormLogin.passwordParameter("password");
+        });
+
+        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+
+        httpSecurity.logout(formLogOut->{
+            formLogOut.logoutUrl("/do-logout");
+            formLogOut.logoutSuccessUrl("/login?logout=true");
+        });
 
         return httpSecurity.build();
     }

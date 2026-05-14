@@ -15,6 +15,9 @@ import com.scm.smartcontactmanager.entities.User;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -50,7 +53,7 @@ public class PageController {
 
      @GetMapping("/login")
      public String login() {
-         return new String("login");
+         return "login";
      }
      
      @GetMapping("/register")
