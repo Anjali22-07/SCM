@@ -16,4 +16,10 @@ public class UserController {
          return "users/dashboard";
      }
 
+     @RequestMapping(value="/users/profile", method=RequestMethod.GET)   
+     public String UserProfile(){
+
+        return "users/profile";
+     }
+
 }
